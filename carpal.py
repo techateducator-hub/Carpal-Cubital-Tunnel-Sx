@@ -9,7 +9,7 @@ import google.generativeai as genai
 # [cite_start]Content derived from Scenario 1: The Factory Worker [cite: 1]
 SCENARIO = """
 [cite_start]**Patient:** David Miller, 40-year-old male. [cite: 4]
-[cite_start]**Setting:** General Practice Clinic. [cite: 4]
+[cite_start]**Setting:** GP Clinic. [cite: 4]
 [cite_start]**Presenting Complaint:** Tingling and numbness in the right hand. [cite: 4]
 
 **Situation:**
@@ -21,12 +21,12 @@ SCENARIO = """
 # B. The Tasks & Grading Logic
 # [cite_start]Tasks mapped from source document [cite: 6]
 TASK_LIST = [
-    [cite_start]"1. **History:** Take a focused history.", [cite: 7]
-    [cite_start]"2. **Physical Exam:** Perform a targeted physical examination of the hand (verbalize findings).", [cite: 8]
-    [cite_start]"3. **Management:** Discuss the most likely diagnosis and initial management plan." [cite: 9]
+    "1. **History:** Take a focused history.", 
+    "2. **Physical Exam:** Perform a targeted physical examination of the hand (verbalize findings).", 
+    "3. **Management:** Discuss the most likely diagnosis and initial management plan." 
 ]
 
-# [cite_start]Rubrics derived from AMC/Murtagh standards in source [cite: 22]
+# [cite_start]Rubrics derived from AMC/Murtagh standards in source [cite: 22, 28]
 RUBRIC_LIST = [
     # Rubric for Task 1 (History)
     """
