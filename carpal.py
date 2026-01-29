@@ -6,49 +6,49 @@ import google.generativeai as genai
 # ==========================================
 
 # A. The Main Scenario (Visible at the top)
-# Content derived from Scenario 1: The Factory Worker [cite: 1]
+# [cite_start]Content derived from Scenario 1: The Factory Worker [cite: 1]
 SCENARIO = """
-**Patient:** David Miller, 40-year-old male. [cite: 4]
-**Setting:** General Practice Clinic. [cite: 4]
-**Presenting Complaint:** Tingling and numbness in the right hand. [cite: 4]
+[cite_start]**Patient:** David Miller, 40-year-old male. [cite: 4]
+[cite_start]**Setting:** General Practice Clinic. [cite: 4]
+[cite_start]**Presenting Complaint:** Tingling and numbness in the right hand. [cite: 4]
 
 **Situation:**
-David is a factory worker on an assembly line involving repetitive wrist movements. [cite: 5, 15]
-He reports that shaking the hand helps (the "flick sign"). [cite: 14, 21]
-He is worried about his job security if he can't use his hand properly. [cite: 16]
+[cite_start]David is a factory worker on an assembly line involving repetitive wrist movements. [cite: 5, 15]
+[cite_start]He reports that shaking the hand helps (the "flick sign"). [cite: 14]
+[cite_start]He is worried about his job security if he can't use his hand properly. [cite: 16]
 """
 
 # B. The Tasks & Grading Logic
-# Tasks mapped from source document [cite: 6]
+# [cite_start]Tasks mapped from source document [cite: 6]
 TASK_LIST = [
-    "1. **History:** Take a focused history. [cite: 7]",
-    "2. **Physical Exam:** Perform a targeted physical examination of the hand (verbalize findings). [cite: 8]",
-    "3. **Management:** Discuss the most likely diagnosis and initial management plan. [cite: 9]"
+    [cite_start]"1. **History:** Take a focused history.", [cite: 7]
+    [cite_start]"2. **Physical Exam:** Perform a targeted physical examination of the hand (verbalize findings).", [cite: 8]
+    [cite_start]"3. **Management:** Discuss the most likely diagnosis and initial management plan." [cite: 9]
 ]
 
-# Rubrics derived from AMC/Murtagh standards in source [cite: 22, 28]
+# [cite_start]Rubrics derived from AMC/Murtagh standards in source [cite: 22]
 RUBRIC_LIST = [
     # Rubric for Task 1 (History)
     """
-    * **Identify Distribution:** Identify numbness/tingling in the median nerve distribution (thumb, index, and middle fingers). [cite: 13, 19, 29]
-    * **Relief Factors:** Identify the "flick sign" (shaking hand). [cite: 14, 21]
-    * **Red Flags:** Must ask about sudden weakness or history of trauma. [cite: 26]
-    * **Critical Error:** Failure to ask about "red flags". [cite: 24, 26]
+    * [cite_start]**Identify Distribution:** Identify numbness/tingling in the median nerve distribution (thumb, index, and middle fingers). [cite: 29]
+    * [cite_start]**Relief Factors:** Identify the "flick sign" (shaking hand). [cite: 14]
+    * [cite_start]**Red Flags:** Must ask about sudden weakness or history of trauma. [cite: 26]
+    * [cite_start]**Critical Error:** Failure to ask about "red flags". [cite: 26]
     """,
     
     # Rubric for Task 2 (Physical Exam)
     """
-    * **Inspection:** Specifically check for thenar eminence wasting. [cite: 25, 102, 106]
-    * **Special Tests:** Perform and verbalize Phalen's test and Tinel's sign. [cite: 30]
-    * **Critical Error:** Failure to check for thenar eminence wasting. [cite: 24, 25, 112]
+    * [cite_start]**Inspection:** Specifically check for thenar eminence wasting. [cite: 25]
+    * [cite_start]**Special Tests:** Perform and verbalize Phalen's test and Tinel's sign. [cite: 30]
+    * [cite_start]**Critical Error:** Failure to check for thenar eminence wasting. [cite: 25]
     """,
     
     # Rubric for Task 3 (Diagnosis & Management)
     """
-    * **Diagnosis:** Identify Carpal Tunnel Syndrome. [cite: 1, 31]
-    * **Conservative Management:** Recommend night-time neutral wrist splints (Gold Standard). [cite: 32, 89]
-    * **Lifestyle/Medical:** Suggest activity modification and NSAIDs for pain. [cite: 32]
-    * **Critical Error:** Inappropriate surgical referral before trying conservative measures for mild cases. [cite: 24, 27]
+    * [cite_start]**Diagnosis:** Identify Carpal Tunnel Syndrome. [cite: 31]
+    * [cite_start]**Conservative Management:** Recommend night-time neutral wrist splints (Gold Standard). [cite: 32]
+    * [cite_start]**Lifestyle/Medical:** Suggest activity modification and NSAIDs for pain. [cite: 32]
+    * [cite_start]**Critical Error:** Inappropriate surgical referral before trying conservative measures for mild cases. [cite: 27]
     """
 ]
 
@@ -73,18 +73,6 @@ st.markdown("---")
 st.header("1. Scenario")
 st.info(SCENARIO)
 
-# Visual aid for the medical context
-st.markdown("##### Reference Anatomy")
-col_img1, col_img2 = st.columns(2)
-with col_img1:
-    st.write("Median Nerve Sensory Distribution")
-    # Median nerve distribution affects the thumb, index, middle, and half of the ring finger [cite: 13, 29]
-    st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Grant_1962_663.png/640px-Grant_1962_663.png", caption="Sensory Distribution", width=300)
-    with col_img2:
-    st.write("Phalen's Test Procedure")
-    # Phalen's test is a key diagnostic physical exam for Carpal Tunnel [cite: 30]
-    st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Phalens_test.jpg/640px-Phalens_test.jpg", caption="Special Tests", width=300)
-    
 st.markdown("---")
 st.header("2. Task-by-Task Performance")
 
